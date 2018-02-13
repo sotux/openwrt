@@ -110,6 +110,12 @@ configure_by_boardtype() {
 			"0:lan" "1:lan" "2:lan" "3:lan" "4:lan" "5@eth0"
 		;;
 
+    # Netgear WNR2000 v2
+	"0xE4CD")
+		ucidef_add_switch "switch0" \
+			"1:lan:4" "2:lan:3" "3:lan:2" "4:lan:1" "0:wan" "5@eth0"
+		;;
+
 	*)
 		configure_by_boardnum "$boardnum"
 		;;
