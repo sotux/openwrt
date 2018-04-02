@@ -1,0 +1,62 @@
+#!/bin/sh
+
+if [ "$ACTION" = "pressed" -a "$BUTTON" = "wps" -a ! -f /tmp/tmp/wpsbuttonlock ]; then
+
+	touch /tmp/tmp/wpslockbutton
+	WPSLED="/sys/class/leds/wr1200js:blue:wps/brightness"
+
+	cd /var/run/hostapd
+	statusWLAN0="$(hostapd_cli -i wlan0 wps_pbc)"
+	statusWLAN1="$(hostapd_cli -i wlan1 wps_pbc)"
+	
+	(
+	if [ "$statusWLAN0" = "OK" ]; then
+		touch /tmp/tmp/wpslockled_wlan0 
+		( for i in $(seq 0 59)
+		do
+			hostapd_status_wlan0=$(hostapd_cli -p /var/run/hostapd -i wlan0 wps_get_status | grep "PBC Status" | cut -d' ' -f3)
+			if [ "$hostapd_status_wlan0" != "Active" ] ; then
+				rm -rf /tmp/tmp/wpslockled_wlan0; break ;
+			else 
+				sleep 2
+			fi
+		done )
+		rm -rf /tmp/tmp/wpslockled_wlan0;
+	fi 
+	) &
+
+	(
+	if [ "$statusWLAN1" = "OK" ]; then
+		touch /tmp/tmp/wpslockled_wlan1
+		( for i in $(seq 0 59)
+		do
+			hostapd_status_wlan1=$(hostapd_cli -p /var/run/hostapd -i wlan1 wps_get_status | grep "PBC Status" | cut -d' ' -f3)
+			if [ "$hostapd_status_wlan1" != "Active" ]; then
+				rm -rf /tmp/tmp/wpslockled_wlan1; break ;
+			else 
+				sleep 2
+			fi
+		done )
+		rm -rf /tmp/tmp/wpslockled_wlan1;
+	fi 
+	) &
+
+	sleep 1 #excution order async to sync
+	rm -rf /tmp/tmp/wpslockbutton
+
+	for i in $(seq 0 59)
+	do
+		if [ ! -f /tmp/tmp/wpslockled_wlan0 -a ! -f /tmp/tmp/wpslockled_wlan1 ]; then
+			break ;
+		fi
+
+		sleep 1
+		echo 1 > $WPSLED
+		sleep 1
+		echo 0 > $WPSLED
+	done
+	echo 0 > $WPSLED
+fi
+rm -rf /tmp/tmp/wpslock*
+
+return 0
