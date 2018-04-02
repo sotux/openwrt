@@ -10,6 +10,12 @@ set_wifi_led() {
 	ucidef_set_led_netdev "wifi_led" "wifi" "${1}" "${2:-wlan0}"
 }
 
+set_wps_led() {
+	if [ -x /etc/rc.button/wps.$boardname ];then
+		mv -f /etc/rc.button/wps.$boardname /etc/rc.button/wps
+	fi
+}
+
 
 board=$(board_name)
 boardname="${board##*,}"
@@ -503,6 +509,7 @@ youhua,wr1200js)
 	ucidef_set_led_switch "internet" "INTERNET" "$boardname:green:wan" "switch0" "0x01"
 	ucidef_set_led_usbdev "usb" "USB" "$boardname:blue:usb" "1-2"
 	ucidef_set_led_default "wps" "wps" "$boardname:blue:wps" "0"
+	set_wps_led
 	;;
 zbt-ape522ii)
 	ucidef_set_led_netdev "wlan2g4" "wlan1-link" "$boardname:green:wlan2g4" "wlan1"
