@@ -250,6 +250,9 @@ ramips_board_detect() {
 	*"JHR-N926R")
 		name="jhr-n926r"
 		;;
+	*"K2P")
+		name="k2p"
+		;;
 	*"M3")
 		name="m3"
 		;;

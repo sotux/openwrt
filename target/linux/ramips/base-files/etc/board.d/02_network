@@ -80,6 +80,7 @@ ramips_setup_interfaces()
 	dir-615-h1|\
 	firewrt|\
 	hlk-rm04|\
+	k2p|\
 	mac1200rv2|\
 	miwifi-mini|\
 	miwifi-nano|\

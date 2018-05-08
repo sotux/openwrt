@@ -154,6 +154,7 @@ get_status_led() {
 	m2m)
 		status_led="$board:blue:wifi"
 		;;
+	k2p|\
 	m3|\
 	m4|\
 	miwifi-nano)

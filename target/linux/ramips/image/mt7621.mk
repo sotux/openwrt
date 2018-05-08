@@ -71,6 +71,13 @@ define Device/firewrt
 endef
 TARGET_DEVICES += firewrt
 
+define Device/k2p
+  DTS := K2P
+  IMAGE_SIZE := $(ralink_default_fw_size_16M)
+  DEVICE_TITLE := Phicomm K2P
+endef
+TARGET_DEVICES += k2p
+
 define Device/mt7621
   DTS := MT7621
   BLOCKSIZE := 64k
