@@ -1,0 +1,13 @@
+--- a/drivers/net/wireless/mediatek/Kconfig
++++ b/drivers/net/wireless/mediatek/Kconfig
+@@ -11,4 +11,5 @@ config WLAN_VENDOR_MEDIATEK
+ 
+ if WLAN_VENDOR_MEDIATEK
+ source "drivers/net/wireless/mediatek/mt7601u/Kconfig"
++source "drivers/net/wireless/mediatek/mt7615e/Kconfig"
+ endif # WLAN_VENDOR_MEDIATEK
+--- a/drivers/net/wireless/mediatek/Makefile
++++ b/drivers/net/wireless/mediatek/Makefile
+@@ -1 +1,2 @@
+ obj-$(CONFIG_MT7601U)	+= mt7601u/
++obj-$(CONFIG_MT7615E)	+= mt7615e/
