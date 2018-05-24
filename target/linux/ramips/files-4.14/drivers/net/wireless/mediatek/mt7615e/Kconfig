@@ -1,0 +1,98 @@
+menu "MT7615E wifi driver"
+
+#############
+# Wireless
+#############
+menuconfig WIFI_DRIVER
+	bool "WiFi Driver Support"
+
+if WIFI_DRIVER
+
+choice
+	prompt "Choose First WiFi Interface"
+	config FIRST_IF_NONE
+		bool "None"
+
+	config FIRST_IF_MT7615E
+		bool "MT7615E"
+		select WIFI_MT_MAC
+		select MT_MAC
+		select CHIP_MT7615E
+
+endchoice
+
+choice
+	prompt "Choose Second WiFi Interface"
+	config SECOND_IF_NONE
+		bool "None"
+
+	config SECOND_IF_MT7615E
+		bool "MT7615E"
+		select WIFI_MT_MAC
+		select CHIP_MT7615E
+endchoice
+
+choice
+	prompt "Choose Third WiFi Interface"
+	config THIRD_IF_NONE
+		bool "None"
+
+	config THIRD_IF_MT7615E
+		bool "MT7615E"
+		select WIFI_MT_MAC
+		select MT_MAC
+		select CHIP_MT7615E
+endchoice
+
+config  RT_FIRST_CARD
+	string
+	depends on ! FIRST_IF_NONE
+	default 7615e if FIRST_IF_MT7615E
+        
+config  RT_SECOND_CARD
+	string
+	depends on ! SECOND_IF_NONE
+	default 7615e if SECOND_IF_MT7615E
+
+config  RT_THIRD_CARD
+	string
+	depends on ! THIRD_IF_NONE
+	default 7615e if THIRD_IF_MT7615E
+        
+config  RT_FIRST_IF_RF_OFFSET
+	hex
+	depends on ! FIRST_IF_NONE
+	default 0x0
+
+config  RT_SECOND_IF_RF_OFFSET
+	hex
+	depends on ! SECOND_IF_NONE
+	default 0x8000
+
+config  RT_THIRD_IF_RF_OFFSET
+	hex
+	depends on ! THIRD_IF_NONE
+	default 0x4000
+
+#SKB alloc selection
+config WIFI_SKB_ALLOC_SELECT
+    bool "SKB Allocation API Select"
+    default n
+choice
+	prompt "SKB Allocation API Selection"
+	depends on WIFI_SKB_ALLOC_SELECT
+	default WIFI_PAGE_ALLOC_SKB
+
+	config  WIFI_SLAB_ALLOC_SKB
+		bool "SLAB skb allocation"
+
+	config  WIFI_PAGE_ALLOC_SKB
+		bool "Page skb allocation"
+endchoice
+
+source "drivers/net/wireless/mediatek/mt7615e/mt_wifi/embedded/Kconfig"
+
+endif # WIFI_DRIVER
+
+endmenu
+
