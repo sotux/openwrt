@@ -10,4 +10,4 @@
 +++ b/drivers/net/wireless/mediatek/Makefile
 @@ -1 +1,2 @@
  obj-$(CONFIG_MT7601U)	+= mt7601u/
-+obj-$(CONFIG_MT7615E)	+= mt7615e/
++obj-$(CONFIG_CHIP_MT7615E)	+= mt7615e/mt_wifi_ap/
