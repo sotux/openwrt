@@ -4027,7 +4027,7 @@ INT RTMPAPSetInformation(
         break;
     case OID_802_11_VOW_BW_AT_EN:
             {
-                P_VOW_UI_CONFIG cfg;
+                P_VOW_UI_CONFIG cfg = NULL;
                 UCHAR buf[VOW_CMD_STR_LEN];
                 UINT8 group;
 
@@ -4047,7 +4047,7 @@ INT RTMPAPSetInformation(
         break;
     case OID_802_11_VOW_BW_TPUT_EN:
             {
-                P_VOW_UI_CONFIG cfg;
+                P_VOW_UI_CONFIG cfg = NULL;
                 UCHAR buf[VOW_CMD_STR_LEN];
                 UINT8 group;
 
@@ -4067,7 +4067,7 @@ INT RTMPAPSetInformation(
         break;
         case OID_802_11_VOW_ATF_EN:
             {
-			    UCHAR *val, buf[VOW_CMD_STR_LEN];
+			    UCHAR *val = NULL, buf[VOW_CMD_STR_LEN];
 
 			    os_alloc_mem(val, (UCHAR **)&val, wrq->u.data.length);
 				Status = copy_from_user(val, wrq->u.data.pointer, wrq->u.data.length);
@@ -4083,7 +4083,7 @@ INT RTMPAPSetInformation(
 
         case OID_802_11_VOW_RX_EN:
             {
-			    UCHAR *val, buf[VOW_CMD_STR_LEN];
+			    UCHAR *val = NULL, buf[VOW_CMD_STR_LEN];
 
 			    os_alloc_mem(val, (UCHAR **)&val, wrq->u.data.length);
 				Status = copy_from_user(val, wrq->u.data.pointer, wrq->u.data.length);
@@ -4099,7 +4099,7 @@ INT RTMPAPSetInformation(
 
         case OID_802_11_VOW_GROUP_MAX_RATE:
             {
-                P_VOW_UI_CONFIG cfg;
+                P_VOW_UI_CONFIG cfg = NULL;
                 UCHAR buf[VOW_CMD_STR_LEN];
                 UINT8 group;
 
@@ -4120,7 +4120,7 @@ INT RTMPAPSetInformation(
 
         case OID_802_11_VOW_GROUP_MIN_RATE:
             {
-                P_VOW_UI_CONFIG cfg;
+                P_VOW_UI_CONFIG cfg = NULL;
                 UCHAR buf[VOW_CMD_STR_LEN];
                 UINT8 group;
 
@@ -4141,7 +4141,7 @@ INT RTMPAPSetInformation(
 
         case OID_802_11_VOW_GROUP_MAX_RATIO:
             {
-                P_VOW_UI_CONFIG cfg;
+                P_VOW_UI_CONFIG cfg = NULL;
                 UCHAR buf[VOW_CMD_STR_LEN];
                 UINT8 group;
 
@@ -4162,7 +4162,7 @@ INT RTMPAPSetInformation(
 
         case OID_802_11_VOW_GROUP_MIN_RATIO:
             {
-                P_VOW_UI_CONFIG cfg;
+                P_VOW_UI_CONFIG cfg = NULL;
                 UCHAR buf[VOW_CMD_STR_LEN];
                 UINT8 group;
 
