@@ -20,8 +20,12 @@
 #include "rtmp_osabl.h"
 #include "rt_os_util.h"
 
-#if LINUX_VERSION_CODE > KERNEL_VERSION(3,10,20)
+#if LINUX_VERSION_CODE > KERNEL_VERSION(3,10,20) && LINUX_VERSION_CODE < KERNEL_VERSION(4,0,0)
 #include <asm-generic/pci-dma-compat.h>
+#endif
+
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,0,0)
+#include <linux/pci-dma-compat.h>
 #endif
 
 #ifdef RTMP_MAC_PCI
