@@ -92,17 +92,17 @@
 #endif /* WCX_SUPPORT */
 #endif /* BB_SOC */
 
-#define EEPROM_DFT_FILE_DIR		"/etc_ro/wlan/"
+#define EEPROM_DFT_FILE_DIR		"/lib/firmware/"
 #define EEPROM_1ST_FILE_DIR		"/etc_ro/Wireless/RT2860/"
 #define EEPROM_2ND_FILE_DIR		"/etc_ro/Wireless/iNIC/"
 
 #ifndef EEPROM_DEFAULT_FILE_PATH
 /* RFIC 2820 */
-#define EEPROM_DEFAULT_FILE_PATH                     "/etc_ro/wlan/RT2880_RT2820_AP_2T3R_V1_6.bin"
+#define EEPROM_DEFAULT_FILE_PATH                     "/lib/firmware/RT2880_RT2820_AP_2T3R_V1_6.bin"
 
 #ifdef MT7615
 #undef EEPROM_DEFAULT_FILE_PATH
-#define EEPROM_DEFAULT_FILE_PATH                     "/etc_ro/wlan/MT7615_EEPROM.bin"
+#define EEPROM_DEFAULT_FILE_PATH                     "/lib/firmware/MT7615_EEPROM.bin"
 #endif /* MT7615 */
 
 

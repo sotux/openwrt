@@ -45,7 +45,7 @@
 #ifdef INTELP6_SUPPORT
 #define DEFAULT_BIN_FILE "/nvram/MT7615_EEPROM_2G.bin"
 #else
-#define DEFAULT_BIN_FILE "/etc_ro/wlan/MT7615E_EEPROM1.bin"
+#define DEFAULT_BIN_FILE "/lib/firmware/MT7615E_EEPROM1.bin"
 #endif
 #else
 #define DEFAULT_BIN_FILE "/etc/MT7615E_EEPROM1.bin"
@@ -55,11 +55,11 @@
 #ifdef INTELP6_SUPPORT
 #define SECOND_BIN_FILE "/nvram/MT7615_EEPROM_5G.bin"
 #else
-#define SECOND_BIN_FILE "/etc_ro/wlan/MT7615E_EEPROM2.bin"
+#define SECOND_BIN_FILE "/lib/firmware/MT7615E_EEPROM2.bin"
 #endif
 #endif /* MT_SECOND_CARD */
 #ifdef MT_THIRD_CARD
-#define THIRD_BIN_FILE "/etc_ro/wlan/MT7615E_EEPROM3.bin"
+#define THIRD_BIN_FILE "/lib/firmware/MT7615E_EEPROM3.bin"
 #endif /* MT_THIRD_CARD */
 
 extern UCHAR g_BFBackOffMode; // BF Backoff Mode: 2/3/4: apply 2T/3T/4T value in BF backoff table
