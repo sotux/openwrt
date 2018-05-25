@@ -13,7 +13,7 @@ else
 EXTRA_CFLAGS = -Idrivers/net/wireless/mediatek/mt7615e/mt_wifi/include \
 				-Idrivers/net/wireless/mediatek/mt7615e/mt_wifi/embedded/include \
 				-Idrivers/net/wireless/mediatek/mt7615e/mt_wifi/ate/include
-DRV_NAME = mt_wifi
+DRV_NAME = mt7615e
 SRC_DIR = ../mt_wifi
 SRC_EMBEDDED_DIR = ../mt_wifi/embedded
 obj-$(CONFIG_MT_AP_SUPPORT) += $(DRV_NAME).o
