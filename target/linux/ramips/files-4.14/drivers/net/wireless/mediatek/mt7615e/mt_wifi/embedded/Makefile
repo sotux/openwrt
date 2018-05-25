@@ -26,17 +26,6 @@ MODULE = $(word 1, $(CHIPSET))
 #OS ABL - YES or NO
 OSABL = NO
 
-ifneq ($(TARGET),THREADX)
-#RT28xx_DIR = home directory of RT28xx source code
-RT28xx_EMBEDDED_DIR = $(shell pwd)
-RT28xx_DIR = $(shell cd ..;pwd)
-RT28xx_OS_DIR = $(RT28xx_DIR)/os
-endif
-
-include $(RT28xx_OS_DIR)/linux/config.mk
-
-RTMP_SRC_DIR = $(RT28xx_DIR)/RT$(MODULE)
-
 #PLATFORM: Target platform
 PLATFORM = PC
 #PLATFORM = BB_SOC
@@ -424,7 +413,7 @@ LINUX_SRC = /root/Working/MT7628_SDK_2013_0912/RT288x_SDK/source/linux-2.6.36.x
 CROSS_COMPILE = /opt/buildroot-gcc342/bin/mipsel-linux-
 endif
 
-export OSABL RT28xx_DIR RT28xx_OS_DIR RT28xx_EMBEDDED_DIR RT28xx_MODE LINUX_SRC CROSS_COMPILE CROSS_COMPILE_INCLUDE PLATFORM RELEASE CHIPSET MODULE RTMP_SRC_DIR LINUX_SRC_MODULE TARGET HAS_WOW_SUPPORT HAS_FPGA_MODE HAS_RX_CUT_THROUGH
+export OSABL RT28xx_DIR RT28xx_OS_DIR RT28xx_EMBEDDED_DIR RT28xx_MODE LINUX_SRC CROSS_COMPILE CROSS_COMPILE_INCLUDE PLATFORM RELEASE CHIPSET MODULE LINUX_SRC_MODULE TARGET HAS_WOW_SUPPORT HAS_FPGA_MODE HAS_RX_CUT_THROUGH
 
 # The targets that may be used.
 PHONY += all build_tools test UCOS THREADX LINUX release prerelease clean uninstall install libwapi osabl sdk_build_tools
@@ -530,19 +519,7 @@ ifeq ($(RELEASE), DPO)
 	./embedded/striptool/banner -b embedded/striptool/copyright.frm -s DPO_GPL/include/firmware.h
 endif
 
-prerelease:
-ifeq ($(MODULE), 2880)
-	$(MAKE) -C $(RT28xx_OS_DIR)/linux -f Makefile.release.2880 prerelease
-else
-	$(MAKE) -C $(RT28xx_OS_DIR)/linux -f Makefile.release prerelease
-endif
-	cp $(RT28xx_OS_DIR)/linux/Makefile.DPB $(RTMP_SRC_DIR)/os/linux/.
-	cp $(RT28xx_OS_DIR)/linux/Makefile.DPA $(RTMP_SRC_DIR)/os/linux/.
-	cp $(RT28xx_OS_DIR)/linux/Makefile.DPC $(RTMP_SRC_DIR)/os/linux/.
-ifeq ($(RT28xx_MODE),STA)
-	cp $(RT28xx_OS_DIR)/linux/Makefile.DPD $(RTMP_SRC_DIR)/os/linux/.
-	cp $(RT28xx_OS_DIR)/linux/Makefile.DPO $(RTMP_SRC_DIR)/os/linux/.
-endif	
+prerelease:	
 
 clean:
 ifeq ($(TARGET), LINUX)
