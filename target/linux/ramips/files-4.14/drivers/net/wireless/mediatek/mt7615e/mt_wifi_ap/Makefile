@@ -588,7 +588,8 @@ os_objs := $(SRC_DIR)/os/linux/rt_proc.o\
             $(SRC_DIR)/os/linux/rt_linux.o\
             $(SRC_DIR)/os/linux/rt_profile.o\
             $(SRC_DIR)/os/linux/rt_txrx_hook.o\
-            $(SRC_DIR)/os/linux/rt_main_dev.o
+            $(SRC_DIR)/os/linux/rt_main_dev.o\
+            $(SRC_DIR)/os/linux/rt_flash.o
 
 ifeq ($(CONFIG_MULTI_INF_SUPPORT),y)
     EXTRA_CFLAGS += -DMULTI_INF_SUPPORT
