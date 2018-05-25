@@ -19,6 +19,11 @@ SRC_EMBEDDED_DIR = ../mt_wifi/embedded
 obj-$(CONFIG_MT_AP_SUPPORT) += $(DRV_NAME).o
 endif
 
+EXTRA_CFLAGS += -Wno-error=date-time \
+                -Wno-error=misleading-indentation \
+                -Wno-error=unused-variable \
+                -Wno-error=implicit-function-declaration
+
 ########################################################
 # Common files
 #		$(SRC_EMBEDDED_DIR)/common/cmm_mumimo.o\
