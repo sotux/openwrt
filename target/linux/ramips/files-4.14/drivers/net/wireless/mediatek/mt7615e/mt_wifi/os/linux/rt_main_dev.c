@@ -47,7 +47,7 @@
 #endif
 
 #ifdef RTMP_MAC_PCI
-MODULE_LICENSE("Proprietary");
+MODULE_LICENSE("GPL");
 #endif /* RTMP_MAC_PCI */
 
 

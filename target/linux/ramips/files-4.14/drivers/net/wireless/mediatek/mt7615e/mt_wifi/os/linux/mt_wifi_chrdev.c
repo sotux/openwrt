@@ -19,9 +19,9 @@
 #include <cust_gpio_usage.h>
 
 #ifdef MTK_LICENSE
-MODULE_LICENSE("Proprietary");
+MODULE_LICENSE("GPL");
 #else
-MODULE_LICENSE("Dual BSD/GPL");
+MODULE_LICENSE("GPL");
 #endif /* MTK_LICENSE */
 
 #define WIFI_DRIVER_NAME "mtk_WIFI_chrdev"
