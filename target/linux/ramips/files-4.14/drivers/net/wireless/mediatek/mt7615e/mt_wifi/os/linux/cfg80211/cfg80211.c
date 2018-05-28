@@ -317,12 +317,18 @@ Note:
 	For iw utility: set type, set monitor
 ========================================================================
 */
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,32))
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,32) && LINUX_VERSION_CODE < KERNEL_VERSION(4,1,0))
 static int CFG80211_OpsVirtualInfChg(
 	IN struct wiphy					*pWiphy,
 	IN struct net_device			*pNetDevIn,
 	IN enum nl80211_iftype			Type,
 	IN UINT32							*pFlags,
+	struct vif_params				*pParams)
+#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(4,1,0))
+static int CFG80211_OpsVirtualInfChg(
+	IN struct wiphy					*pWiphy,
+	IN struct net_device			*pNetDevIn,
+	IN enum nl80211_iftype			Type,
 	struct vif_params				*pParams)
 #else
 static int CFG80211_OpsVirtualInfChg(

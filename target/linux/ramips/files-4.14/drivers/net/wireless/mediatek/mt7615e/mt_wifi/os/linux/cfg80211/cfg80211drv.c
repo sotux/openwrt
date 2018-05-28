@@ -1237,15 +1237,15 @@ VOID CFG80211_RegRuleApply(
 #endif /* EXT_BUILD_CHANNEL_LIST */
 #endif /* AUTO_CH_SELECT_ENHANCE */
 
-	for(IdBand=0; IdBand<IEEE80211_NUM_BANDS; IdBand++)
+	for(IdBand=0; IdBand<MT76_NUM_BANDS; IdBand++)
 	{
-		if (((IdBand == IEEE80211_BAND_2GHZ) && (pBand24G == NULL)) ||
-			((IdBand == IEEE80211_BAND_5GHZ) && (pBand5G == NULL)))
+		if (((IdBand == MT76_BAND_2GHZ) && (pBand24G == NULL)) ||
+			((IdBand == MT76_BAND_5GHZ) && (pBand5G == NULL)))
 		{
 			continue;
 		}
 
-		if (IdBand == IEEE80211_BAND_2GHZ)
+		if (IdBand == MT76_BAND_2GHZ)
 		{
 			CFG80211DBG(DBG_LVL_TRACE, ("crda> reset chan/power for 2.4GHz\n"));
 		}
@@ -1533,9 +1533,9 @@ BOOLEAN CFG80211_checkScanTable(
 
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,39))
 		if (pAd->ScanTab.BssEntry[bss_idx].Channel > 14)
-			CenFreq = ieee80211_channel_to_frequency(pBssEntry->Channel , IEEE80211_BAND_5GHZ);
+			CenFreq = ieee80211_channel_to_frequency(pBssEntry->Channel , MT76_BAND_5GHZ);
 		else
-			CenFreq = ieee80211_channel_to_frequency(pBssEntry->Channel , IEEE80211_BAND_2GHZ);
+			CenFreq = ieee80211_channel_to_frequency(pBssEntry->Channel , MT76_BAND_2GHZ);
 #else
             CenFreq = ieee80211_channel_to_frequency(pBssEntry->Channel);
 #endif

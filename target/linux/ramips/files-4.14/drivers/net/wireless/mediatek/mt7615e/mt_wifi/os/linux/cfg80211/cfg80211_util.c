@@ -334,15 +334,15 @@ BOOLEAN CFG80211_SupBandInit(
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,39))
 		if (IdLoop >= 14)
 		{
-			pChannels[IdLoop].band = IEEE80211_BAND_5GHZ;
+			pChannels[IdLoop].band = MT76_BAND_5GHZ;
 			pChannels[IdLoop].center_freq = \
-			    		ieee80211_channel_to_frequency(Cfg80211_Chan[IdLoop], IEEE80211_BAND_5GHZ);
+			    		ieee80211_channel_to_frequency(Cfg80211_Chan[IdLoop], MT76_BAND_5GHZ);
 		}
 		else
 		{
-			pChannels[IdLoop].band = IEEE80211_BAND_2GHZ;
+			pChannels[IdLoop].band = MT76_BAND_2GHZ;
 		    pChannels[IdLoop].center_freq = \
-			    		ieee80211_channel_to_frequency(Cfg80211_Chan[IdLoop], IEEE80211_BAND_2GHZ);			
+			    		ieee80211_channel_to_frequency(Cfg80211_Chan[IdLoop], MT76_BAND_2GHZ);			
 		}
 #else
 		pChannels[IdLoop].center_freq = ieee80211_channel_to_frequency(Cfg80211_Chan[IdLoop]);
@@ -394,7 +394,7 @@ BOOLEAN CFG80211_SupBandInit(
  */	
 
 	/* 7. Fill the Band 2.4GHz */
-	pBand = &pCfg80211_CB->Cfg80211_bands[IEEE80211_BAND_2GHZ];
+	pBand = &pCfg80211_CB->Cfg80211_bands[MT76_BAND_2GHZ];
 	if (pDriverBandInfo->RFICType & RFIC_24GHZ)
 	{
 		pBand->n_channels = CFG80211_NUM_OF_CHAN_2GHZ;
@@ -447,17 +447,17 @@ BOOLEAN CFG80211_SupBandInit(
 		pBand->ht_cap.mcs.tx_params = IEEE80211_HT_MCS_TX_DEFINED;
 #endif /* DOT11_N_SUPPORT */
 
-		pWiphy->bands[IEEE80211_BAND_2GHZ] = pBand;
+		pWiphy->bands[MT76_BAND_2GHZ] = pBand;
 	}
 	else
 	{
-		pWiphy->bands[IEEE80211_BAND_2GHZ] = NULL;
+		pWiphy->bands[MT76_BAND_2GHZ] = NULL;
 		pBand->channels = NULL;
 		pBand->bitrates = NULL;
 	}
 
 	/* 8. Fill the Band 5GHz */
-	pBand = &pCfg80211_CB->Cfg80211_bands[IEEE80211_BAND_5GHZ];
+	pBand = &pCfg80211_CB->Cfg80211_bands[MT76_BAND_5GHZ];
 	if (pDriverBandInfo->RFICType & RFIC_5GHZ)
 	{
 		pBand->n_channels = CFG80211_NUM_OF_CHAN_5GHZ;
@@ -557,11 +557,11 @@ BOOLEAN CFG80211_SupBandInit(
 #endif /* DOT11_VHT_AC */
 
 
-		pWiphy->bands[IEEE80211_BAND_5GHZ] = pBand;
+		pWiphy->bands[MT76_BAND_5GHZ] = pBand;
 	}
 	else
 	{
-		pWiphy->bands[IEEE80211_BAND_5GHZ] = NULL;
+		pWiphy->bands[MT76_BAND_5GHZ] = NULL;
 		pBand->channels = NULL;
 		pBand->bitrates = NULL;
 	}
@@ -734,8 +734,8 @@ BOOLEAN CFG80211OS_BandInfoGet(
 	if (pWiphy == NULL)
 		return FALSE;
 
-	*ppBand24 = pWiphy->bands[IEEE80211_BAND_2GHZ];
-	*ppBand5 = pWiphy->bands[IEEE80211_BAND_5GHZ];
+	*ppBand24 = pWiphy->bands[MT76_BAND_2GHZ];
+	*ppBand5 = pWiphy->bands[MT76_BAND_5GHZ];
 	return TRUE;
 }
 
@@ -844,9 +844,9 @@ BOOLEAN CFG80211OS_ChanInfoInit(
 	memset(pChan, 0, sizeof(*pChan));
 
 	if (ChanId > 14)
-		pChan->band = IEEE80211_BAND_5GHZ;
+		pChan->band = MT76_BAND_5GHZ;
 	else
-		pChan->band = IEEE80211_BAND_2GHZ;
+		pChan->band = MT76_BAND_2GHZ;
 
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,39))
 	pChan->center_freq = ieee80211_channel_to_frequency(ChanId, pChan->band);
@@ -927,7 +927,7 @@ VOID CFG80211OS_ScanEnd(
 	if (pCfg80211_CB->pCfg80211_ScanReq)
 	{
 		CFG80211DBG(DBG_LVL_ERROR, ("80211> cfg80211_scan_done\n"));
-		cfg80211_scan_done(pCfg80211_CB->pCfg80211_ScanReq, FlgIsAborted);
+		cfg80211_scan_done(pCfg80211_CB->pCfg80211_ScanReq, &pCfg80211_CB->pCfg80211_ScanReq->info);
 		pCfg80211_CB->pCfg80211_ScanReq = NULL;
 	}
 	else
@@ -1142,6 +1142,7 @@ VOID CFG80211OS_Roamed(
 	IN UCHAR *pReqIe, IN UINT32 ReqIeLen,
 	IN UCHAR *pRspIe, IN UINT32 RspIeLen)
 {
+#if (LINUX_VERSION_CODE <= KERNEL_VERSION(4, 4, 0))
 	cfg80211_roamed(pNetDev,
 #if (LINUX_VERSION_CODE > KERNEL_VERSION(2, 6, 39))
 		NULL,
@@ -1150,6 +1151,7 @@ VOID CFG80211OS_Roamed(
 		pReqIe, ReqIeLen,
 		pRspIe, RspIeLen, 
 		GFP_KERNEL);
+#endif
 }
 
 
@@ -1173,6 +1175,7 @@ VOID CFG80211OS_InformBSS(
 	
 	cfg80211_inform_bss(pWiphy, 
 					pCfg80211_CB->pCfg80211_Channels,
+					CFG80211_BSS_FTYPE_PRESP,
 					pBssid,
 					0,
 					WLAN_CAPABILITY_IBSS,
@@ -1183,7 +1186,9 @@ VOID CFG80211OS_InformBSS(
 
 VOID CFG80211OS_JoinIBSS(IN PNET_DEV pNetDev, IN const PUCHAR pBssid)
 {
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 4, 0)
 	cfg80211_ibss_joined(pNetDev, pBssid, GFP_KERNEL);
+#endif
 }
 
 #endif /* RT_CFG80211_SUPPORT */
