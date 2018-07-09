@@ -473,6 +473,7 @@ get_status_led() {
 	tl-wr841n-v7|\
 	tl-wr841n-v7-8M|\
 	tl-wr841n-v8|\
+	tl-wr841n-v10-cn|\
 	tl-wr841n-v11|\
 	tl-wr842n-v2|\
 	tl-wr842n-v3|\
