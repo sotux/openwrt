@@ -22,6 +22,13 @@ case "$board" in
 	ucidef_set_led_oneshot "modbus" "Modbus" "$boardname:red:modbus" "100" "33"
 	ucidef_set_led_default "etactica" "etactica" "$boardname:red:etactica" "ignore"
 	;;
+"netgear,wnr2000-v3")
+	ucidef_set_led_netdev "wan" "WAN" "$boardname:green:wan" "eth0"
+	ucidef_set_led_switch "lan1" "LAN1" "$boardname:green:lan1" "switch0" "0x02" "0x0f"
+	ucidef_set_led_switch "lan2" "LAN2" "$boardname:green:lan2" "switch0" "0x04" "0x0f"
+	ucidef_set_led_switch "lan3" "LAN3" "$boardname:green:lan3" "switch0" "0x08" "0x0f"
+	ucidef_set_led_switch "lan4" "LAN4" "$boardname:green:lan4" "switch0" "0x10" "0x0f"
+	;;
 "netgear,wnr612-v2"|\
 "on,n150r")
 	ucidef_set_led_netdev "wan" "WAN" "netgear:green:wan" "eth0"

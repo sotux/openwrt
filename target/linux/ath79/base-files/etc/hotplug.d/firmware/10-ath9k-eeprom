@@ -55,6 +55,7 @@ case "$FIRMWARE" in
 	"tplink,tl-wdr4300")
 		ath9k_eeprom_extract "art" 20480 1088
 		;;
+	"netgear,wnr2000-v3"|\
 	"netgear,wnr612-v2"|\
 	"on,n150r"|\
 	"pcs,cap324"|\
