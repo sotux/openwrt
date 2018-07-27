@@ -183,6 +183,11 @@ ath79_setup_interfaces()
 		ucidef_add_switch_port_attr "switch0" 2 led 9
 		ucidef_add_switch_port_attr "switch0" 5 led 2
 		;;
+	netgear,wnr2000-v3)
+		ucidef_set_interface_wan "eth0"
+		ucidef_add_switch "switch0" \
+			"0@eth1" "1:lan" "2:lan" "3:lan:3" "4:lan:4"
+		;;
 	netgear,wnr612-v2|\
 	on,n150r|\
 	tplink,tl-wr740n-v1|\
