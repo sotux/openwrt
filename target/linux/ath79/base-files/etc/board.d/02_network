@@ -248,6 +248,7 @@ ath79_setup_interfaces()
 	tplink,tl-wr740n-v5|\
 	tplink,tl-wr741nd-v4|\
 	tplink,tl-wr841-v8|\
+	tplink,tl-wr841n-v8-16M|\
 	tplink,tl-wr842n-v2)
 		ucidef_set_interface_wan "eth1"
 		ucidef_add_switch "switch0" \
