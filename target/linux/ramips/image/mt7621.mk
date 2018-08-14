@@ -392,6 +392,15 @@ define Device/youhua_wr1200js
 endef
 TARGET_DEVICES += youhua_wr1200js
 
+define Device/youhua_wr1200js-512m
+  DTS := WR1200JS-512M
+  IMAGE_SIZE := 16064k
+  DEVICE_TITLE := YouHua WR1200JS (512MB RAM)
+  DEVICE_PACKAGES := \
+	kmod-mt7603 kmod-mt76x2 kmod-usb3 kmod-usb-ledtrig-usbport wpad-mini
+endef
+TARGET_DEVICES += youhua_wr1200js-512m
+
 define Device/wsr-1166
   DTS := WSR-1166
   IMAGE/sysupgrade.bin := trx | pad-rootfs | append-metadata

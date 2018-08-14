@@ -210,6 +210,7 @@ platform_check_image() {
 	y1|\
 	y1s|\
 	youhua,wr1200js|\
+	youhua,wr1200js-512m|\
 	we1026-5g-16m|\
 	zbt-ape522ii|\
 	zbt-cpe102|\
