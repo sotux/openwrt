@@ -949,6 +949,9 @@ dnsmasq_start()
 	xappend "--group=dnsmasq"
 	echo >> $CONFIGFILE_TMP
 
+	# Copy extra dnsmasq config file to $dnsmasqconfdir
+	[ -d /etc/dnsmasq.d ] && cp -f /etc/dnsmasq.d/*.conf $dnsmasqconfdir
+
 	config_get_bool enable_tftp "$cfg" enable_tftp 0
 	[ "$enable_tftp" -gt 0 ] && {
 		config_get tftp_root "$cfg" tftp_root
