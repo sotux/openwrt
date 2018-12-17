@@ -86,6 +86,7 @@ ath79_setup_interfaces()
 	tplink,tl-wr841-v7-8M|\
 	tplink,tl-wr841-v9|\
 	tplink,tl-wr841-v10|\
+	tplink,tl-wr841-v10-CN|\
 	tplink,tl-wr841-v11|\
 	tplink,tl-wr841-v12|\
 	tplink,tl-wr842n-v1|\
