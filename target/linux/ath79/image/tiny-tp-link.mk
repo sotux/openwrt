@@ -347,6 +347,16 @@ define Device/tplink_tl-wr841-v7
 endef
 TARGET_DEVICES += tplink_tl-wr841-v7
 
+define Device/tplink_tl-wr841-v7-8M
+  $(Device/tplink-8m)
+  ATH_SOC := ar7241
+  DEVICE_MODEL := TL-WR841N/ND
+  DEVICE_VARIANT := v7(8M)
+  TPLINK_HWID := 0x08410007
+  SUPPORTED_DEVICES += tl-wr841-v7-8M
+endef
+TARGET_DEVICES += tplink_tl-wr841-v7-8M
+
 define Device/tplink_tl-wr841-v8
   $(Device/tplink-4mlzma)
   SOC := ar9341
