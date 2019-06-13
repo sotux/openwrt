@@ -94,6 +94,7 @@ ath79_setup_interfaces()
 	tplink,tl-mr3420-v1|\
 	tplink,tl-wdr3500-v1|\
 	tplink,tl-wr841-v7|\
+	tplink,tl-wr841-v7-8M|\
 	tplink,tl-wr841-v9|\
 	tplink,tl-wr841-v10|\
 	tplink,tl-wr841-v11|\
