@@ -1,0 +1,56 @@
+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+/dts-v1/;
+
+#include "ar7241_tplink.dtsi"
+
+/ {
+	compatible = "tplink,tl-wr841-v7-8M", "qca,ar7241";
+	model = "TP-LINK TL-WR841N/ND v7(8M)";
+
+	ath9k-leds {
+		compatible = "gpio-leds";
+
+		wlan {
+			label = "tp-link:green:wlan";
+			gpios = <&ath9k 0 GPIO_ACTIVE_LOW>;
+			default-state = "off";
+			linux,default-trigger = "phy0tpt";
+		};
+	};
+};
+
+&spi {
+	status = "okay";
+	num-cs = <1>;
+
+	flash@0 {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		compatible = "jedec,spi-nor";
+		reg = <0>;
+		spi-max-frequency = <25000000>;
+
+		partitions {
+			compatible = "fixed-partitions";
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+			uboot: partition@0 {
+				reg = <0x0 0x20000>;
+				label = "u-boot";
+				read-only;
+			};
+
+			partition@20000 {
+				reg = <0x20000 0x7d0000>;
+				label = "firmware";
+			};
+
+			partition@3f0000 {
+				reg = <0x7f0000 0x10000>;
+				label = "art";
+				read-only;
+			};
+		};
+	};
+};
