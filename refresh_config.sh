@@ -10,7 +10,7 @@ refresh_conf()
 	cd -
 	make menuconfig
 	cd env
-	git commit --amend --no-edit -a
+	git commit -a -s 
 	git push --force-with-lease
 	cd -
 }
