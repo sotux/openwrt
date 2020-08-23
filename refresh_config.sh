@@ -12,15 +12,11 @@ refresh_conf()
 	cd env
 	git commit --amend --no-edit -a
 	git push --force-with-lease
+	cp .config ../../actions-openwrt/"${1%-master}".config
 	cd -
 }
 
-refresh_conf "ac58u-19.07"
-refresh_conf "newifi3-19.07"
-refresh_conf "tl-wr841nv10-ath79-19.07"
-refresh_conf "tl-wr841nv7-ath79-19.07"
-refresh_conf "tl-wr841nv8-ath79-19.07"
-refresh_conf "wndr3700v4-ar71xx-19.07"
-refresh_conf "wndr3800-ath79-19.07"
-refresh_conf "wndr4300v1-ar71xx-19.07"
-refresh_conf "wr1200js-19.07"
+refresh_conf "cm520-master"
+refresh_conf "ac58u-master"
+refresh_conf "newifi3-master"
+refresh_conf "wr1200js-master"
