@@ -16,6 +16,7 @@ refresh_conf()
 }
 
 refresh_conf "ac58u-19.07"
+refresh_conf "cm520-19.07"
 refresh_conf "newifi3-19.07"
 refresh_conf "tl-wr841nv10-ath79-19.07"
 refresh_conf "tl-wr841nv7-ath79-19.07"
