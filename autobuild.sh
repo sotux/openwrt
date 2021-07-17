@@ -18,3 +18,5 @@ echo "This computer has $CPU_PROCESSORS processor(s)."
 ./scripts/env switch wndr4300v1-21.02 && make -j$CPU_PROCESSORS
 
 ./scripts/env switch x86-21.02 && make -j$CPU_PROCESSORS
+
+./scripts/env switch zeropi+-21.02 && make -j$CPU_PROCESSORS
