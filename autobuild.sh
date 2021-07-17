@@ -10,6 +10,7 @@ echo "This computer has $CPU_PROCESSORS processor(s)."
 
 ./scripts/env switch newifi3-21.02 && make -j$CPU_PROCESSORS
 ./scripts/env switch wr1200js-21.02 && make -j$CPU_PROCESSORS
+./scripts/env switch k2p-21.02 && make -j$CPU_PROCESSORS
 
 ./scripts/env switch wndr3800-21.02 && make -j$CPU_PROCESSORS
 
