@@ -17,6 +17,7 @@ refresh_conf()
 
 refresh_conf "x86-24.10"
 refresh_conf "rax3000m-24.10"
+refresh_conf "rax3000me-24.10"
 refresh_conf "360t7-24.10"
 refresh_conf "ac58u-24.10"
 refresh_conf "cm520-24.10"
