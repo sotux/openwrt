@@ -267,6 +267,42 @@ define U-Boot/mt7981_cmcc_rax3000m-nand
   DEPENDS:=+trusted-firmware-a-mt7981-spim-nand-ddr4
 endef
 
+define U-Boot/mt7981_cmcc_rax3000me-emmc
+  NAME:=CMCC RAX3000Me
+  BUILD_SUBTARGET:=filogic
+  BUILD_DEVICES:=cmcc_rax3000me
+  UBOOT_CONFIG:=mt7981_cmcc_rax3000me-emmc
+  UBOOT_IMAGE:=u-boot.fip
+  BL2_BOOTDEV:=emmc
+  BL2_SOC:=mt7981
+  BL2_DDRTYPE:=ddr3
+  DEPENDS:=+trusted-firmware-a-mt7981-emmc-ddr3
+endef
+
+define U-Boot/mt7981_cmcc_rax3000me-nand-ddr3
+  NAME:=CMCC RAX3000Me
+  BUILD_SUBTARGET:=filogic
+  BUILD_DEVICES:=cmcc_rax3000me
+  UBOOT_CONFIG:=mt7981_cmcc_rax3000me-nand-ddr3
+  UBOOT_IMAGE:=u-boot.fip
+  BL2_BOOTDEV:=spim-nand
+  BL2_SOC:=mt7981
+  BL2_DDRTYPE:=ddr3
+  DEPENDS:=+trusted-firmware-a-mt7981-spim-nand-ddr3
+endef
+
+define U-Boot/mt7981_cmcc_rax3000me-nand-ddr4
+  NAME:=CMCC RAX3000Me
+  BUILD_SUBTARGET:=filogic
+  BUILD_DEVICES:=cmcc_rax3000me
+  UBOOT_CONFIG:=mt7981_cmcc_rax3000me-nand-ddr4
+  UBOOT_IMAGE:=u-boot.fip
+  BL2_BOOTDEV:=spim-nand
+  BL2_SOC:=mt7981
+  BL2_DDRTYPE:=ddr4
+  DEPENDS:=+trusted-firmware-a-mt7981-spim-nand-ddr4
+endef
+
 define U-Boot/mt7981_glinet_gl-x3000
   NAME:=GL.iNet GL-X3000
   BUILD_SUBTARGET:=filogic
@@ -859,6 +895,9 @@ UBOOT_TARGETS := \
 	mt7981_cmcc_a10 \
 	mt7981_cmcc_rax3000m-emmc \
 	mt7981_cmcc_rax3000m-nand \
+	mt7981_cmcc_rax3000me-emmc \
+	mt7981_cmcc_rax3000me-nand-ddr3 \
+	mt7981_cmcc_rax3000me-nand-ddr4 \
 	mt7981_gatonetworks_gdsp \
 	mt7981_glinet_gl-x3000 \
 	mt7981_glinet_gl-xe3000 \
