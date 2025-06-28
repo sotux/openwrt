@@ -7,6 +7,7 @@ echo "This computer has $CPU_PROCESSORS processor(s)."
 ./scripts/env switch x86-24.10 && make clean && make -j$CPU_PROCESSORS && mv bin/targets/x86 bin/targets/x86-24.10
 
 ./scripts/env switch rax3000m-24.10 && make clean && make -j$CPU_PROCESSORS && mv bin/targets/mediatek/filogic bin/targets/mediatek/filogic-rax3000m-24.10
+./scripts/env switch rax3000me-24.10 && make clean && make -j$CPU_PROCESSORS && mv bin/targets/mediatek/filogic bin/targets/mediatek/filogic-rax3000me-24.10
 ./scripts/env switch 360t7-24.10 && make clean && make -j$CPU_PROCESSORS && mv bin/targets/mediatek/filogic bin/targets/mediatek/filogic-360t7-24.10
 
 ./scripts/env switch ac58u-24.10 && make clean && make -j$CPU_PROCESSORS && mv bin/targets/ipq40xx/generic bin/targets/ipq40xx/generic-ac58u-24.10
